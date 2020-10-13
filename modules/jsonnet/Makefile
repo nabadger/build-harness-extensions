@@ -6,7 +6,7 @@ JSONNET_PHONY_DIFF=$(patsubst %.jsonnet,%.diff,$(JSONNET_TEST_FILES))
 
 ## Install jsonnetfile.json with jsonnet-bundler
 jsonnet/install:
-	@@jb install
+	jb install
 
 jsonnet/fmt:
 	@@echo "Format jsonnet with 'make tanka/fmt'" ;\
