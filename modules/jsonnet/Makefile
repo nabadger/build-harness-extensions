@@ -4,21 +4,12 @@ JSONNET_TEST_FILES=$(wildcard ./*/tests/test.jsonnet)
 JSONNET_PHONY_GOLDEN=$(patsubst %.jsonnet,%-golden.json,$(JSONNET_TEST_FILES))
 JSONNET_PHONY_DIFF=$(patsubst %.jsonnet,%.diff,$(JSONNET_TEST_FILES))
 
-TANKA_CONTAINER_CMD:=docker run --rm \
-  -u="$(shell id -u):$(shell id -g)" \
-  -v $$(pwd):/src/ \
-  --workdir /src/ \
-  grafana/tanka:latest
-
 ## Install jsonnetfile.json with jsonnet-bundler
 kind/up:
 	@@jb install
 
-## Format Jsonnet files with tanka
 jsonnet/fmt:
-	@@if ! $(TANKA_CONTAINER_CMD) fmt . ; then \
-	  exit 1;\
-	fi
+	@@echo "Format jsonnet with 'make tanka/fmt'" ;\
 
 ## Run Jsonnet tests
 jsonnet/test: jsonnet/install jsonnet/fmt jsonnet/diff
