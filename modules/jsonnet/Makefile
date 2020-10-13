@@ -5,7 +5,7 @@ JSONNET_PHONY_GOLDEN=$(patsubst %.jsonnet,%-golden.json,$(JSONNET_TEST_FILES))
 JSONNET_PHONY_DIFF=$(patsubst %.jsonnet,%.diff,$(JSONNET_TEST_FILES))
 
 ## Install jsonnetfile.json with jsonnet-bundler
-kind/up:
+jsonnet/install:
 	@@jb install
 
 jsonnet/fmt:
