@@ -29,6 +29,7 @@ export BUILD_HARNESS_EXTENSIONS_PATH ?= $(BUILD_HARNESS_PATH)/build-harness-exte
   kind/up                             Install jsonnetfile.json with jsonnet-bundler
   opa/clone-policy                    Git clone policies (requires OPA_POLICIES_REPO argument)
   opa/conftest                        Validate manifests
+  pluto/validate                      Validate manifests
   tanka/fmt                           Format Jsonnet files with tanka
   tanka/generate                      Generate manifests using tanka
   tanka/to-kustomize                  Generate kustomization for tanka-generated manifests
