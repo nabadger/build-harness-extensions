@@ -64,6 +64,8 @@ EOF
     --for=condition=available \
     --timeout=90s \
     deploy/ingress-nginx-controller
+
+  docker_registry_start
 }
 
 ## Delete the cluster
