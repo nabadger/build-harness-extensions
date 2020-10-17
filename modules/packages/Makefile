@@ -1,6 +1,6 @@
-export INSTALL_PATH ?= $(BUILD_HARNESS_PATH)/vendor
-export PACKAGES_VERSION ?= nb-all
-export PACKAGES_PATH ?= $(BUILD_HARNESS_PATH)/vendor/packages
+export INSTALL_PATH = $(BUILD_HARNESS_PATH)/vendor
+export PACKAGES_VERSION = nb-all
+export PACKAGES_PATH = $(BUILD_HARNESS_PATH)/vendor/packages
 
 ## Install packages 
 packages/install:
