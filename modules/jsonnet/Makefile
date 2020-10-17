@@ -8,11 +8,8 @@ JSONNET_PHONY_DIFF=$(patsubst %.jsonnet,%.diff,$(JSONNET_TEST_FILES))
 jsonnet/install:
 	jb install
 
-jsonnet/fmt:
-	@@echo "Format jsonnet with 'make tanka/fmt'" ;\
-
 ## Run Jsonnet tests
-jsonnet/test: jsonnet/install jsonnet/fmt jsonnet/diff
+jsonnet/test: jsonnet/install jsonnet/diff
 
 ## Diff Jsonnet fils against expected golden 
 jsonnet/diff: jsonnet/diff-help $(JSONNET_PHONY_DIFF)
