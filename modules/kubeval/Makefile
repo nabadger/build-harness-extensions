@@ -1,7 +1,7 @@
 ## Kubeval helpers
 
 KUBEVAL_K8S_VERSION?=1.16.4
-KUBEVAL_ARGS?=--strict --quiet --output tap --ignore-missing-schemas
+KUBEVAL_ARGS?=--strict --quiet --output stdout --ignore-missing-schemas
 
 ## Validate manifests
 kubeval/validate:
