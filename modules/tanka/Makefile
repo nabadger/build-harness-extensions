@@ -1,16 +1,10 @@
 ## Tanka helpers
-TANKA_CONTAINER_CMD:=docker run --rm \
-  -u="$(shell id -u):$(shell id -g)" \
-  -v $$(pwd):/src/ \
-  --workdir /src/ \
-  grafana/tanka:latest
-
 TANKA_ALL_ENVIRONMENTS = $(shell find environments/ -type f -name "spec.json")
 
 
 ## Format Jsonnet files with tanka
 tanka/fmt:
-	@@if ! $(TANKA_CONTAINER_CMD) fmt . ; then \
+	@@if ! tanka fmt . ; then \
 	  exit 1;\
 	fi
   
