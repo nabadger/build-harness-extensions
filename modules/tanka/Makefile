@@ -4,7 +4,7 @@ TANKA_ALL_ENVIRONMENTS = $(shell find environments/ -type f -name "spec.json")
 
 ## Format Jsonnet files with tanka
 tanka/fmt:
-	@@if ! tanka fmt . ; then \
+	@@if ! tk fmt . ; then \
 	  exit 1;\
 	fi
   
