@@ -1,6 +1,5 @@
 ## Tanka helpers
-TANKA_ALL_ENVIRONMENTS = $(shell find environments/ -type f -name "spec.json")
-
+ENVIRONMENTS=$(shell find environments/ -type f -name "spec.json")
 
 ## Format Jsonnet files with tanka
 tanka/fmt:
@@ -11,11 +10,11 @@ tanka/fmt:
 ## Generate manifests using tanka
 tanka/generate:
 	@echo "Generating rendered manifests in ./rendered" ;\
-  rm -rf $$(pwd)/rendered/ ;\
+	rm -rf $$(pwd)/rendered/ ;\
 	mkdir -p $$(pwd)/rendered/ ;\
 	touch $$(pwd)/rendered/.gitkeep ;\
 
-	@for f in $(TANKA_ALL_ENVIRONMENTS); do \
+	@for f in $(ENVIRONMENTS); do \
 	    app_path="$$(dirname $$f)" ;\
 	    rendered_path="./rendered/$${app_path}/manifests" ;\
 	    mkdir -p $${rendered_path} ;\
@@ -24,7 +23,7 @@ tanka/generate:
 
 ## Generate kustomization for tanka-generated manifests
 tanka/to-kustomize: tanka/generate
-	@for f in $(TANKA_ALL_ENVIRONMENTS); do \
+	@for f in $(ENVIRONMENTS); do \
 		app_path="$$(dirname $$f)" ;\
 		rendered_path="./rendered/$${app_path}" ;\
 		echo $${pwd} ;\
