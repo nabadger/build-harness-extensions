@@ -35,7 +35,6 @@ docker_registry_start() {
 ## Create a cluster with the local registry enabled in container
 create() {
 
-  export KUBECONFIG="${HOME}/.kube/kind-config"
 
 cat <<EOF | kind create cluster --name="${KIND_CLUSTER_NAME}" --image="${KIND_K8S_IMAGE}" --wait="${KIND_WAIT}" --config=-
 kind: Cluster
@@ -64,10 +63,8 @@ nodes:
 EOF
 
  if [ "$KIND_FIX_KUBECONFIG" = "true" ]; then
-    sed -i -e "s/server: https:\/\/0\.0\.0\.0/server: https:\/\/$KIND_DOCKER_HOST_ALIAS/" "$KUBECONFIG"
+    sed -i -e "s/server: https:\/\/0\.0\.0\.0/server: https:\/\/$KIND_DOCKER_HOST_ALIAS/" "${HOME}/.kube/config"
   fi
-
-  cat $KUBECONFIG
 
   # https://docs.tilt.dev/choosing_clusters.html#discovering-the-registry
   for node in $(kind get nodes --name "${KIND_CLUSTER_NAME}"); do
