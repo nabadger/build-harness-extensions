@@ -8,6 +8,8 @@
 #
 set -o errexit
 
+[[ "$TRACE" ]] && set -x
+
 KIND_K8S_IMAGE=${KIND_K8S_IMAGE:-"kindest/node:v1.16.15"}
 KIND_CLUSTER_NAME=${KIND_CLUSTER_NAME:-"kind"}
 KIND_DOCKER_REGISTRY_NAME=${KIND_DOCKER_REGISTRY_NAME:-"kind-docker-registry"}
@@ -64,6 +66,8 @@ EOF
  if [ "$KIND_FIX_KUBECONFIG" = "true" ]; then
     sed -i -e "s/server: https:\/\/0\.0\.0\.0/server: https:\/\/$KIND_DOCKER_HOST_ALIAS/" "$KUBECONFIG"
   fi
+
+  cat $KUBECONFIG
 
   # https://docs.tilt.dev/choosing_clusters.html#discovering-the-registry
   for node in $(kind get nodes --name "${KIND_CLUSTER_NAME}"); do
