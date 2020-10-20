@@ -8,7 +8,7 @@
 #
 set -o errexit
 
-[[ "$TRACE" ]] && set -x
+[ "$TRACE" ] && set -x
 
 KIND_K8S_IMAGE=${KIND_K8S_IMAGE:-"kindest/node:v1.16.15"}
 KIND_CLUSTER_NAME=${KIND_CLUSTER_NAME:-"kind"}
